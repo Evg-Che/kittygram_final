@@ -18,7 +18,7 @@ services:
       - db
     volumes:
       - static:/backend_static/
-      - media:/app/media
+      - media:/media/
   frontend:
     image: eva33/kittygram_frontend
     command: cp -r /app/build/. /frontend_static/
@@ -32,4 +32,4 @@ services:
       - 9000:80
     volumes:
       - static:/static/
-      - media:/var/www/media
+      - media:/media/
