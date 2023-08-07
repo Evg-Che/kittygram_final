@@ -1,26 +1,93 @@
-#  Как работать с репозиторием финального задания
+[![Python](https://img.shields.io/badge/-Python_3.9.10-464646??style=flat-square&logo=Python)](https://www.python.org/downloads/)
+[![Django](https://img.shields.io/badge/-Django-464646??style=flat-square&logo=Django)](https://www.djangoproject.com/)
+[![Django](https://img.shields.io/badge/-Django_rest_framework_3.12.4-464646??style=flat-square&logo=Django)](https://www.django-rest-framework.org)
+[![Nginx](https://img.shields.io/badge/-Nginx-464646??style=flat-square&logo=Nginx)](https://nginx.org/ru/)
+[![Gunicorn](https://img.shields.io/badge/-gunicorn-464646??style=flat-square&logo=gunicorn)](https://gunicorn.org/)
+[![CI/CD](https://img.shields.io/badge/-CI/CD-464646??style=flat-square&logo=CI/CD)](https://resources.github.com/ci-cd/)
+<br>
+![badge](https://github.com/Evg-Che/kittygram_final/actions/workflows/main.yml/badge.svg)
 
-## Что нужно сделать
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
+# Kittygram
 
-## Как проверить работу с помощью автотестов
+## Kittygram — социальная сеть для обмена фотографиями котиков. 
 
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
+**Контейнеры и CI/CD для Kittygram.**
+
+## Технологии
+
+- Python 3.9
+- Django 3.2.3
+- Django REST framework 3.12.4
+- JavaScript
+
+
+# Установка 
+
+Клонировать репозиторий на свой компьютер:
+
+    ```bash
+    git clone https://github.com/Evg-Che/kittygram_final.git
+    ```
+    ```bash
+    cd kittygram
+    ```
+Выполнить запуск:
+
+```bash
+sudo docker compose -f docker-compose.yml up
 ```
 
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
+# Миграции и сбор статических файлов бэкенда
 
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
+После запуска необходимо выполнить сбор статических файлов и миграции бэкенда. 
 
-## Чек-лист для проверки перед отправкой задания
+```bash
+sudo docker compose -f [имя-файла-docker-compose.yml] exec backend python manage.py migrate
 
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+sudo docker compose -f [имя-файла-docker-compose.yml] exec backend python manage.py collectstatic --no-input
+
+sudo docker compose -f [имя-файла-docker-compose.yml] exec backend cp -r /app/collected_static/. /static/static/
+```
+
+# В директорию kittygram/ скопировать файлы docker-compose.production.yml и .env:
+
+    ```bash
+    scp -i path_to_SSH/SSH_name docker-compose.production.yml username@server_ip:/home/username/kittygram/docker-compose.production.yml
+    * ath_to_SSH — путь к файлу с SSH-ключом;
+    * SSH_name — имя файла с SSH-ключом (без расширения);
+    * username — ваше имя пользователя на сервере;
+    * server_ip — IP вашего сервера.
+    ```
+
+# Запустить docker compose в режиме демона:
+
+    ```bash
+    sudo docker compose -f docker-compose.production.yml up -d
+    ```
+
+## Настройка CI/CD
+
+1. Файл workflow уже написан. Он находится в директории
+
+    ```bash
+    kittygram/.github/workflows/main.yml
+    ```
+
+2. На своем сервере добавить секреты в GitHub Actions:
+
+    ```bash
+    DOCKER_USERNAME                # имя пользователя в DockerHub
+    DOCKER_PASSWORD                # пароль пользователя в DockerHub
+    HOST                           # ip_address сервера
+    USER                           # имя пользователя
+    SSH_KEY                        # приватный ssh-ключ (cat ~/.ssh/id_rsa)
+    SSH_PASSPHRASE                 # кодовая фраза (пароль) для ssh-ключа
+
+    TELEGRAM_TO                    # id телеграм-аккаунта (можно узнать у @userinfobot, команда /start)
+    TELEGRAM_TOKEN                 # токен бота (получить токен можно у @BotFather, /token, имя бота)
+    ```
+
+
+### Автор
+Eva Che
