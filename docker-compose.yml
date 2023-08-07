@@ -23,6 +23,8 @@ services:
 
   frontend:
     build: ./frontend/
+    depends_on:
+      - backend
     command: cp -r /app/build/. /frontend_static/
     volumes:
       - static:/frontend_static/
@@ -35,4 +37,4 @@ services:
     ports:
       - 9000:80
     depends_on:
-      - backend
+      - frontend
