@@ -38,7 +38,7 @@
 sudo docker compose -f docker-compose.yml up
 ```
 
-# Миграции и сбор статических файлов бэкенда
+## Миграции и сбор статических файлов бэкенда
 
 После запуска необходимо выполнить сбор статических файлов и миграции бэкенда. 
 
@@ -50,7 +50,7 @@ sudo docker compose -f [имя-файла-docker-compose.yml] exec backend pytho
 sudo docker compose -f [имя-файла-docker-compose.yml] exec backend cp -r /app/collected_static/. /static/static/
 ```
 
-# В директорию kittygram/ скопировать файлы docker-compose.production.yml и .env:
+## В директорию kittygram/ скопировать файлы docker-compose.production.yml и .env:
 
     ```bash
     scp -i path_to_SSH/SSH_name docker-compose.production.yml username@server_ip:/home/username/kittygram/docker-compose.production.yml
@@ -60,7 +60,7 @@ sudo docker compose -f [имя-файла-docker-compose.yml] exec backend cp -r
     * server_ip — IP вашего сервера.
     ```
 
-# Запустить docker compose в режиме демона:
+## Запустить docker compose в режиме демона:
 
     ```bash
     sudo docker compose -f docker-compose.production.yml up -d
