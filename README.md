@@ -26,12 +26,12 @@
 
 Клонировать репозиторий на свой компьютер:
 
-    ```bash
-    git clone https://github.com/Evg-Che/kittygram_final.git
-    ```
-    ```bash
-    cd kittygram
-    ```
+```bash
+git clone https://github.com/Evg-Che/kittygram_final.git
+```
+```bash
+cd kittygram
+```
 Выполнить запуск:
 
 ```bash
@@ -52,41 +52,41 @@ sudo docker compose -f [имя-файла-docker-compose.yml] exec backend cp -r
 
 ## В директорию kittygram/ скопировать файлы docker-compose.production.yml и .env:
 
-    ```bash
-    scp -i path_to_SSH/SSH_name docker-compose.production.yml username@server_ip:/home/username/kittygram/docker-compose.production.yml
-    * ath_to_SSH — путь к файлу с SSH-ключом;
-    * SSH_name — имя файла с SSH-ключом (без расширения);
-    * username — ваше имя пользователя на сервере;
-    * server_ip — IP вашего сервера.
-    ```
+```bash
+scp -i path_to_SSH/SSH_name docker-compose.production.yml username@server_ip:/home/username/kittygram/docker-compose.production.yml
+* ath_to_SSH — путь к файлу с SSH-ключом;
+* SSH_name — имя файла с SSH-ключом (без расширения);
+* username — ваше имя пользователя на сервере;
+* server_ip — IP вашего сервера.
+```
 
 ## Запустить docker compose в режиме демона:
 
-    ```bash
-    sudo docker compose -f docker-compose.production.yml up -d
-    ```
+```bash
+sudo docker compose -f docker-compose.production.yml up -d
+```
 
 ## Настройка CI/CD
 
 1. Файл workflow уже написан. Он находится в директории
 
-    ```bash
-    kittygram/.github/workflows/main.yml
-    ```
+```bash
+kittygram/.github/workflows/main.yml
+```
 
 2. На своем сервере добавить секреты в GitHub Actions:
 
-    ```bash
-    DOCKER_USERNAME                # имя пользователя в DockerHub
-    DOCKER_PASSWORD                # пароль пользователя в DockerHub
-    HOST                           # ip_address сервера
-    USER                           # имя пользователя
-    SSH_KEY                        # приватный ssh-ключ (cat ~/.ssh/id_rsa)
-    SSH_PASSPHRASE                 # кодовая фраза (пароль) для ssh-ключа
+```bash
+DOCKER_USERNAME                # имя пользователя в DockerHub
+DOCKER_PASSWORD                # пароль пользователя в DockerHub
+HOST                           # ip_address сервера
+USER                           # имя пользователя
+SSH_KEY                        # приватный ssh-ключ (cat ~/.ssh/id_rsa)
+SSH_PASSPHRASE                 # кодовая фраза (пароль) для ssh-ключа
 
-    TELEGRAM_TO                    # id телеграм-аккаунта (можно узнать у @userinfobot, команда /start)
-    TELEGRAM_TOKEN                 # токен бота (получить токен можно у @BotFather, /token, имя бота)
-    ```
+TELEGRAM_TO                    # id телеграм-аккаунта (можно узнать у @userinfobot, команда /start)
+TELEGRAM_TOKEN                 # токен бота (получить токен можно у @BotFather, /token, имя бота)
+```
 
 
 ### Автор
