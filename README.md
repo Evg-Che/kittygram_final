@@ -90,7 +90,5 @@ TELEGRAM_TOKEN                 # токен бота (получить токе�
 
 
 ### Автор
-<h1 align="center">Hi, I'm <a href="https://oldit.ru" target="_blank">Eva Che</a> 
+<h1 align="center">Hi, I'm <a href="https://github.com/Evg-Che" target="_blank">Eva Che</a> 
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
-
-[GitHub](https://github.com/Evg-Che)
